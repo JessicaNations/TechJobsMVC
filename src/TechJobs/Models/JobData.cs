@@ -13,7 +13,6 @@ namespace TechJobs.Models
         public static List<Dictionary<string, string>> FindAll()
         {
             LoadData();
-
             // Bonus mission: return a copy
             return new List<Dictionary<string, string>>(AllJobs);
         }
@@ -24,6 +23,7 @@ namespace TechJobs.Models
          */
         public static List<string> FindAll(string column)
         {
+
             LoadData();
 
             List<string> values = new List<string>();
@@ -38,8 +38,8 @@ namespace TechJobs.Models
                 }
             }
 
-            // Bonus mission: sort results alphabetically
-            values.Sort();
+                // Bonus mission: sort results alphabetically
+                values.Sort();
             return values;
         }
 
@@ -53,19 +53,13 @@ namespace TechJobs.Models
 
             List<Dictionary<string, string>> jobs = new List<Dictionary<string, string>>();
 
-            foreach (Dictionary<string, string> row in AllJobs)
+            foreach (Dictionary<string, string> job in AllJobs)
             {
-
-                foreach (string key in row.Keys)
+                foreach (string key in job.Keys)
                 {
-                    string aValue = row[key];
-
-                    if (aValue.ToLower().Contains(value.ToLower()))
+                    if (job[key].ToLower().Contains(value.ToLower()))
                     {
-                        jobs.Add(row);
-
-                        // Finding one field in a job that matches is sufficient
-                        break;
+                        jobs.Add(job);
                     }
                 }
             }
@@ -105,7 +99,6 @@ namespace TechJobs.Models
          */
         private static void LoadData()
         {
-
             if (IsDataLoaded)
             {
                 return;
